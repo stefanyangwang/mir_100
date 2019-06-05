@@ -16,6 +16,10 @@ class TurtleBot:
         # Publisher which will publish to the topic '/turtle1/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/robot1/cmd_vel',
                                                   Twist, queue_size=10)
+        self.velocity_publisher1 = rospy.Publisher('/robot2/cmd_vel',
+                                                  Twist, queue_size=10)
+        self.velocity_publisher2 = rospy.Publisher('/robot3/cmd_vel',
+                                                  Twist, queue_size=10)
         
 
         # A subscriber to the topic '/turtle1/pose'. self.update_pose is called
@@ -26,7 +30,7 @@ class TurtleBot:
 
         self.pose = Odometry()
        
-        self.rate = rospy.Rate(10)
+        self.rate = rospy.Rate(100)
 
     def update_pose(self, data):
         """Callback function which is called when a new message of type Pose is
@@ -85,6 +89,8 @@ class TurtleBot:
 
             # Publishing our vel_msg
             self.velocity_publisher.publish(vel_msg)
+            self.velocity_publisher1.publish(vel_msg)
+            self.velocity_publisher2.publish(vel_msg)
             
 
             # Publish at the desired rate.
@@ -94,6 +100,8 @@ class TurtleBot:
         vel_msg.linear.x = 0
         vel_msg.angular.z = 0
         self.velocity_publisher.publish(vel_msg)
+        self.velocity_publisher1.publish(vel_msg)
+        self.velocity_publisher2.publish(vel_msg)
         
 
         # If we press control + C, the node will stop.
