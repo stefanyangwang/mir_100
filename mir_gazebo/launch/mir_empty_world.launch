@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable, but can also be an absolute path -->
+  
+  <!--<arg name="robot_x"   default="0.0" />
+  <arg name="robot_y"   default="0.0" />
+  <arg name="robot_yaw" default="0.0" />-->
+  
+   
+     <remap from="robot1/joint_states"                   to="robot1/mir/joint_states" />
+     <remap from="robot1/mobile_base_controller/cmd_vel" to="robot1/cmd_vel" />
+     <remap from="robot1/mobile_base_controller/odom"    to="robot1/odom_comb" />
+     <remap from="robot2/joint_states"                   to="robot2/mir/joint_states" />
+     <remap from="robot2/mobile_base_controller/cmd_vel" to="robot2/cmd_vel" />
+     <remap from="robot2/mobile_base_controller/odom"    to="robot2/odom_comb" />
+     <remap from="robot3/joint_states"                   to="robot3/mir/joint_states" />
+     <remap from="robot3/mobile_base_controller/cmd_vel" to="robot3/cmd_vel" />
+     <remap from="robot3/mobile_base_controller/odom"    to="robot3/odom_comb" />
+     <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(arg world_name)"/>
+      <arg name="paused" value="true" />
+      <arg name="gui" value="$(arg gui)" />
+    </include>
+  
+  
+    
+   
+   
+  <group ns="robot1">
+  <!-- Add passive + mimic joints to joint_states topic-->
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    
+    <rosparam param="source_list">[mir/joint_states]</rosparam>
+    <param name="rate" value="200.0" />
+   </node>
+
+  <!-- spawn robot and bring up controllers etc. -->
+  
+   <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+    <arg name="robot_x" value="0.0" />
+    <arg name="name" value="robot1" />
+    
+   </include>
+  </group>
+  <group ns="robot2">
+  <!-- Add passive + mimic joints to joint_states topic-->
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    
+    <rosparam param="source_list">[mir/joint_states]</rosparam>
+    <param name="rate" value="200.0" />
+   </node>
+
+  <!-- spawn robot and bring up controllers etc. -->
+  
+   <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+    <arg name="robot_y" value="3.0" />
+    <arg name="name" value="robot2" />
+    
+   </include>
+  </group>
+  <group ns="robot3">
+  <!-- Add passive + mimic joints to joint_states topic-->
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    
+    <rosparam param="source_list">[mir/joint_states]</rosparam>
+    <param name="rate" value="200.0" />
+   </node>
+
+  <!-- spawn robot and bring up controllers etc. -->
+  
+   <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+    <arg name="robot_y" value="-3.0" />
+    <arg name="name" value="robot3" />
+    
+   </include>
+  </group>
+  
+</launch> 
