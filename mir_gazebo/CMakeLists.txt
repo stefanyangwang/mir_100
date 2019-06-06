@@ -3,12 +3,15 @@ project(mir_gazebo)
 
 find_package(catkin REQUIRED COMPONENTS
   roslaunch
+  
 )
-
+include_directories(include ${catkin_INCLUDE_DIRS})
 ###################################
 ## catkin specific configuration ##
 ###################################
-catkin_package() 
+catkin_package(
+    
+)
 
 #############
 ## Install ##
@@ -26,5 +29,6 @@ install(DIRECTORY
 #############
 ## Testing ##
 #############
+
 
 roslaunch_add_file_check(launch)
