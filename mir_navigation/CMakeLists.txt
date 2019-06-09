@@ -6,6 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   nav_msgs
+  geometry_msgs
 )
 include_directories(include ${catkin_INCLUDE_DIRS})
 
@@ -15,7 +16,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 catkin_package(
     INCLUDE_DIRS
     LIBRARIES
-    CATKIN_DEPENDS roscpp std_msgs nav_msgs
+    CATKIN_DEPENDS roscpp std_msgs nav_msgs geometry_msgs
     DEPENDS
 )
 add_executable(radians2degree nodes/radians2degree.cpp)
