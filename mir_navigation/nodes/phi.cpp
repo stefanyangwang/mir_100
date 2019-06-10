@@ -133,6 +133,7 @@ int main(int argc,char **argv)
     angle1 angle1(&n);
     angle2 angle2(&n);
     angle3 angle3(&n);
+    ros::Rate rate(50);
     while(ros::ok()){
       geometry_msgs::Twist newpose1;
       geometry_msgs::Twist newpose2;
@@ -144,6 +145,7 @@ int main(int argc,char **argv)
       std_msgs::Float64 f;
       std_msgs::Float64 phi1;
       std_msgs::Float64 phi2;
+      
       newpose1.linear.x=0.4*cos(angle2.z2)+pose2.x2;
       newpose1.linear.y=0.4*cos(angle2.z2)+pose2.y2;
       newpose2.linear.x=0.4*cos(angle3.z3)+pose3.x3;
@@ -201,6 +203,7 @@ int main(int argc,char **argv)
       pub.publish(g);
       pub1.publish(h);
       ros::spinOnce();
+      rate.sleep();
     }
     
     

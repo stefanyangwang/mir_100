@@ -25,6 +25,12 @@ add_dependencies(radians2degree ${catkin_EXPORTED_TARGETS})
 add_executable(phi nodes/phi.cpp)
 target_link_libraries(phi ${catkin_LIBRARIES})
 add_dependencies(phi ${catkin_EXPORTED_TARGETS})
+add_executable(distance nodes/distance.cpp)
+target_link_libraries(distance ${catkin_LIBRARIES})
+add_dependencies(distance ${catkin_EXPORTED_TARGETS})
+add_executable(gamma nodes/gamma.cpp)
+target_link_libraries(gamma ${catkin_LIBRARIES})
+add_dependencies(gamma ${catkin_EXPORTED_TARGETS})
 
 #############
 ## Install ##
@@ -43,7 +49,7 @@ install(PROGRAMS
 )
 
 ## Mark executables and/or libraries for installation
- install(TARGETS radians2degree phi
+ install(TARGETS radians2degree phi distance gamma
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
