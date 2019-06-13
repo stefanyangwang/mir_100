@@ -4,5 +4,6 @@
   <node name="radians2degree" pkg="mir_navigation" type="radians2degree" />
   <node name="distance" pkg="mir_navigation" type="distance" />
   <node name="gamma" pkg="mir_navigation" type="gamma" />
+  <node name="velocity" pkg="mir_navigation" type="velocity" />
     
 </launch>
