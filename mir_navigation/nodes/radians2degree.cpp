@@ -10,67 +10,60 @@ ros::Publisher pub2;
 
 const double PI=3.1415926;
 
+
 void poseCallback(const nav_msgs::Odometry & pose_message){
-    
-    std_msgs::Float64 new_pose;
-    std_msgs::Float64 new_pose1;
     std_msgs::Float64 a;
-    std_msgs::Float64 b;
-    std_msgs::Float64 c;
-    new_pose.data=1*cos(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.x;
-    new_pose1.data=1*sin(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.y;
-    a.data=atan2((pose_message.pose.pose.position.y-new_pose1.data),(new_pose.data-pose_message.pose.pose.position.x));
-    b.data=a.data*(180.0/PI);
-    if (b.data<0){
-        c.data=360+b.data;
+    
+    double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
+    double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);
+    a.data=atan2(siny_cosp,cosy_cosp);
+    a.data=a.data*(180.0/PI);
+    if (a.data<0){
+        a.data=360+a.data;
     }
     else{
-        c.data=b.data;
+        a.data=a.data;
     }
-    c.data=360-c.data;
-    pub.publish(c);
+   
+    pub.publish(a);
 
 }
 void poseCallback1(const nav_msgs::Odometry & pose_message){
     
-    std_msgs::Float64 new_pose;
-    std_msgs::Float64 new_pose1;
-    std_msgs::Float64 a;
-    std_msgs::Float64 b;
-    std_msgs::Float64 c;
-    new_pose.data=1*cos(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.x;
-    new_pose1.data=1*sin(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.y;
-    a.data=atan2((pose_message.pose.pose.position.y-new_pose1.data),(new_pose.data-pose_message.pose.pose.position.x));
-    b.data=a.data*(180.0/PI);
-    if (b.data<0){
-        c.data=360+b.data;
+    
+   std_msgs::Float64 a;
+    
+    double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
+    double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);
+    a.data=atan2(siny_cosp,cosy_cosp);
+    a.data=a.data*(180.0/PI);
+    if (a.data<0){
+        a.data=360+a.data;
     }
     else{
-        c.data=b.data;
+        a.data=a.data;
     }
-    c.data=360-c.data;
-    pub1.publish(c);
+   
+    pub1.publish(a);
 
 }
 void poseCallback2(const nav_msgs::Odometry & pose_message){
     
-    std_msgs::Float64 new_pose;
-    std_msgs::Float64 new_pose1;
+    
     std_msgs::Float64 a;
-    std_msgs::Float64 b;
-    std_msgs::Float64 c;
-    new_pose.data=1*cos(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.x;
-    new_pose1.data=1*sin(pose_message.pose.pose.orientation.z)+pose_message.pose.pose.position.y;
-    a.data=atan2((pose_message.pose.pose.position.y-new_pose1.data),(new_pose.data-pose_message.pose.pose.position.x));
-    b.data=a.data*(180.0/PI);
-    if (b.data<0){
-        c.data=360+b.data;
+    
+    double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
+    double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);
+    a.data=atan2(siny_cosp,cosy_cosp);
+    a.data=a.data*(180.0/PI);
+    if (a.data<0){
+        a.data=360+a.data;
     }
     else{
-        c.data=b.data;
+        a.data=a.data;
     }
-    c.data=360-c.data;
-    pub2.publish(c);
+   
+    pub2.publish(a);
 
 }
 int main(int argc,char **argv)
