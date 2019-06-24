@@ -110,11 +110,11 @@ int main(int argc,char **argv)
       b.data=gamma.g2*PI/180.0;
       c.data=phi.phi1*PI/180.0;
       d.data=phi.phi2*PI/180.0;
-      e.data=(0.1*(3-distance.l1)+velocity1.v1*cos(c.data))/cos(a.data);
-      f.data=(0.1*(3-distance.l2)+velocity1.v1*cos(d.data))/cos(b.data);
-      velocity2.angular.z=(cos(a.data)/0.4)*(0.1*distance.l1*(1.5-c.data)-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
+      e.data=(0.31*(3-distance.l1)+velocity1.v1*cos(c.data))/cos(a.data);
+      f.data=(0.31*(3-distance.l2)+velocity1.v1*cos(d.data))/cos(b.data);
+      velocity2.angular.z=(cos(a.data)/0.4)*(1.55*distance.l1*(1.5-c.data)-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
       velocity2.linear.x=e.data-0.4*velocity2.angular.z*tan(a.data);
-      velocity3.angular.z=(cos(b.data)/0.4)*(0.1*distance.l2*(4.7-d.data)-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
+      velocity3.angular.z=(cos(b.data)/0.4)*(1.55*distance.l2*(4.7-d.data)-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
       velocity3.linear.x=f.data-0.4*velocity3.angular.z*tan(b.data);
 
       pub.publish(velocity2);
