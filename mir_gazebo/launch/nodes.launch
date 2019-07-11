@@ -5,5 +5,7 @@
   <node name="distance" pkg="mir_navigation" type="distance" />
   <node name="gamma" pkg="mir_navigation" type="gamma" />
   <node name="velocity" pkg="mir_navigation" type="velocity" />
+  <node name="statepublish" pkg="mir_navigation" type="statepublish" />
+  <node name="pidpublish" pkg="mir_navigation" type="pidpublish" />
     
 </launch>

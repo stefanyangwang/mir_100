@@ -54,7 +54,7 @@
   <!-- spawn robot and bring up controllers etc. -->
   
    <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
-    <arg name="robot_y" value="1.0" />
+    <arg name="robot_y" value="5.0" />
     <arg name="name" value="robot2" />
     
    </include>
