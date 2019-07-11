@@ -1,0 +1,26 @@
+<launch>
+    <node name="controller" pkg="pid" type="controller" ns="w" output="screen" >
+      <param name="Kp" value="0.1" />
+      <param name="Ki" value="1.3" />
+      <param name="Kd" value="0" />
+      
+      
+     </node>
+
+    
+    
+    <node name="controller" pkg="pid" type="controller" ns="v" output="screen" >
+      <param name="Kp" value="0.1" />
+      <param name="Ki" value="1.3" />
+      <param name="Kd" value="0" />
+      
+     </node>
+
+    
+
+    <node name="setpoint_node" pkg="pid" type="setpoint_node"  output="screen" />
+   
+
+    
+
+</launch>
