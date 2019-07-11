@@ -90,14 +90,16 @@ int main(int argc,char **argv)
 {
     ros::init(argc,argv,"velocity");
     ros::NodeHandle n;
-    pub=n.advertise<geometry_msgs::Twist>("/robot2/cmd_vel",10);
+    pub=n.advertise<geometry_msgs::Twist>("/sollvelocity2",10);
     pub1=n.advertise<geometry_msgs::Twist>("/robot3/cmd_vel",10);
+    
     ros::Rate rate(50);
     ga gamma(&n);
     distance distance(&n);
     phi phi(&n);
     velocity1 velocity1(&n);
     while(ros::ok()){
+      
       std_msgs::Float64 a;
       std_msgs::Float64 b;
       std_msgs::Float64 c;
@@ -110,13 +112,13 @@ int main(int argc,char **argv)
       b.data=gamma.g2*PI/180.0;
       c.data=phi.phi1*PI/180.0;
       d.data=phi.phi2*PI/180.0;
-      e.data=(0.31*(3-distance.l1)+velocity1.v1*cos(c.data))/cos(a.data);
-      f.data=(0.31*(3-distance.l2)+velocity1.v1*cos(d.data))/cos(b.data);
-      velocity2.angular.z=(cos(a.data)/0.4)*(1.55*distance.l1*(1.5-c.data)-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
+      e.data=(0.275*(3-distance.l1)+velocity1.v1*cos(c.data))/cos(a.data);
+      f.data=(0.275*(3-distance.l2)+velocity1.v1*cos(d.data))/cos(b.data);
+      velocity2.angular.z=(cos(a.data)/0.4)*(1.455*distance.l1*(1.5-c.data)-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
       velocity2.linear.x=e.data-0.4*velocity2.angular.z*tan(a.data);
-      velocity3.angular.z=(cos(b.data)/0.4)*(1.55*distance.l2*(4.7-d.data)-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
+      velocity3.angular.z=(cos(b.data)/0.4)*(1.455*distance.l2*(4.7-d.data)-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
       velocity3.linear.x=f.data-0.4*velocity3.angular.z*tan(b.data);
-
+      
       pub.publish(velocity2);
       pub1.publish(velocity3);
       

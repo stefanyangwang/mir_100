@@ -34,6 +34,12 @@ add_dependencies(gamma ${catkin_EXPORTED_TARGETS})
 add_executable(velocity nodes/velocity.cpp)
 target_link_libraries(velocity ${catkin_LIBRARIES})
 add_dependencies(velocity ${catkin_EXPORTED_TARGETS})
+add_executable(statepublish nodes/statepublish.cpp)
+target_link_libraries(statepublish ${catkin_LIBRARIES})
+add_dependencies(statepublish ${catkin_EXPORTED_TARGETS})
+add_executable(pidpublish nodes/pidpublish.cpp)
+target_link_libraries(pidpublish ${catkin_LIBRARIES})
+add_dependencies(pidpublish ${catkin_EXPORTED_TARGETS})
 
 #############
 ## Install ##
@@ -52,7 +58,7 @@ install(PROGRAMS
 )
 
 ## Mark executables and/or libraries for installation
- install(TARGETS radians2degree phi distance gamma velocity
+ install(TARGETS radians2degree phi distance gamma velocity statepublish pidpublish
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
