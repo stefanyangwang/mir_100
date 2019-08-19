@@ -1,26 +1,38 @@
 <launch>
-    <node name="controller" pkg="pid" type="controller" ns="w" output="screen" >
-      <param name="Kp" value="0.5" />
-      <param name="Ki" value="1.5" />
-      <param name="Kd" value="0" />
+    <node name="controller" pkg="pid" type="controller" ns="l1" output="screen" >
+      <param name="Kp" value="0.198" />
+      <param name="Ki" value="0" />
+      <param name="Kd" value="0.02" />
       
       
      </node>
 
     
     
-    <node name="controller" pkg="pid" type="controller" ns="v" output="screen" >
-      <param name="Kp" value="0.5" />
-      <param name="Ki" value="1.5" />
-      <param name="Kd" value="0" />
+    <node name="controller" pkg="pid" type="controller" ns="l2" output="screen" >
+      <param name="Kp" value="0.198" />
+      <param name="Ki" value="0" />
+      <param name="Kd" value="0.02" />
       
      </node>
+    <node name="controller" pkg="pid" type="controller" ns="w1" output="screen" >
+      <param name="Kp" value="0.198" />
+      <param name="Ki" value="0" />
+      <param name="Kd" value="0.02" />
+      
+    </node>
+    <node name="controller" pkg="pid" type="controller" ns="w2" output="screen" >
+      <param name="Kp" value="0.198" />
+      <param name="Ki" value="0" />
+      <param name="Kd" value="0.02" />
+      
+    </node>
 
     
 
-    <node name="setpoint_node" pkg="pid" type="setpoint_node"  output="screen" />
-   
-
+    <node name="setpoint_node" pkg="pid" type="setpoint_node"  output="screen" >
+      
+    </node>
     
 
 </launch>

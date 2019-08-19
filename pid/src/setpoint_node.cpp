@@ -38,54 +38,43 @@
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
 #include <geometry_msgs/Twist.h>
-class velocity2 {
-  
-    
-  public:
-    double x1;
-    double y1;
-    velocity2(ros::NodeHandle *setpoint_node){
-     
-      pose_subscriber=setpoint_node->subscribe("/sollvelocity2",1000,&velocity2::poseCallback,this);
-    }
-    void poseCallback(const geometry_msgs::Twist::ConstPtr& msg) 
-    {   
-   
-    x1 = msg->linear.x;
-    y1 = msg->angular.z;
-    
-    }
-    ros::Subscriber pose_subscriber;
-};
 
 int main(int argc, char** argv)
-{
+{ 
+  
   ros::init(argc, argv, "setpoint_node");
   ROS_INFO("Starting setpoint publisher");
   ros::NodeHandle setpoint_node;
-
+  
   while (ros::ok() && ros::Time(0) == ros::Time::now())
   {
     ROS_INFO("Setpoint_node spinning, waiting for time to become non-zero");
     sleep(1);
   }
-
   
   
-  ros::Publisher setpoint_pub = setpoint_node.advertise<std_msgs::Float64>("w/setpoint", 10);
-  ros::Publisher setpoint_pub1 = setpoint_node.advertise<std_msgs::Float64>("v/setpoint", 10);
+  ros::Publisher setpoint_pub = setpoint_node.advertise<std_msgs::Float64>("l1/setpoint", 10);
+  ros::Publisher setpoint_pub1 = setpoint_node.advertise<std_msgs::Float64>("l2/setpoint", 10);
+  ros::Publisher setpoint_pub2 = setpoint_node.advertise<std_msgs::Float64>("w1/setpoint", 10);
+  ros::Publisher setpoint_pub3 = setpoint_node.advertise<std_msgs::Float64>("w2/setpoint", 10);
 
-  ros::Rate loop_rate(50);  // change setpoint every 5 seconds
-  velocity2 velocity2(&setpoint_node);
+  ros::Rate loop_rate(50);  
+  
   while (ros::ok())
   {
     
-    std_msgs::Float64 setpointv;
-    std_msgs::Float64 setpointw;
-    setpointv.data=velocity2.x1;
-    setpointw.data=velocity2.y1;
-    setpoint_pub.publish(setpointw);  // publish twice so graph gets it as a step
-    setpoint_pub1.publish(setpointv);
+    std_msgs::Float64 setpointl1;
+    std_msgs::Float64 setpointl2;
+    std_msgs::Float64 setpointw1;
+    std_msgs::Float64 setpointw2;
+    setpointl1.data=3;
+    setpointl2.data=3;
+    setpointw1.data=1.5;
+    setpointw2.data=4.7;
+    setpoint_pub.publish(setpointl1);  
+    setpoint_pub1.publish(setpointl2);
+    setpoint_pub2.publish(setpointw1);
+    setpoint_pub3.publish(setpointw2);
     ros::spinOnce();
     loop_rate.sleep();
   }
