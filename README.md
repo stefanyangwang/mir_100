@@ -1,5 +1,5 @@
 # mir_100
-multiple robots move in formation
+
 This programm can make three mobile robots moving in a formation.I make them right now moving in a line to each other.
 To start it must make three files launch:
 1.roslaunch pid roboterpid.launch
