@@ -26,6 +26,46 @@ class ga {
     }
     ros::Subscriber pose_subscriber;
 };
+class piddistance {
+  
+    
+  public:
+    double l1;
+    double l2;
+    piddistance(ros::NodeHandle *n){
+     
+      pose_subscriber=n->subscribe("piddistance",1000,&piddistance::poseCallback,this);
+    }
+    void poseCallback(const geometry_msgs::Twist::ConstPtr& msg) 
+    {   
+   
+    l1 = msg->linear.x;
+    l2 = msg->linear.y;
+    
+    
+    }
+    ros::Subscriber pose_subscriber;
+};
+class piddegree {
+  
+    
+  public:
+    double w1;
+    double w2;
+    piddegree(ros::NodeHandle *n){
+     
+      pose_subscriber=n->subscribe("piddegree",1000,&piddegree::poseCallback,this);
+    }
+    void poseCallback(const geometry_msgs::Twist::ConstPtr& msg) 
+    {   
+   
+    w1 = msg->linear.x;
+    w2 = msg->linear.y;
+    
+    
+    }
+    ros::Subscriber pose_subscriber;
+};
 class distance {
   
     
@@ -90,12 +130,14 @@ int main(int argc,char **argv)
 {
     ros::init(argc,argv,"velocity");
     ros::NodeHandle n;
-    pub=n.advertise<geometry_msgs::Twist>("/sollvelocity2",10);
+    pub=n.advertise<geometry_msgs::Twist>("/robot2/cmd_vel",10);
     pub1=n.advertise<geometry_msgs::Twist>("/robot3/cmd_vel",10);
     
     ros::Rate rate(50);
     ga gamma(&n);
     distance distance(&n);
+    piddistance piddistance(&n);
+    piddegree piddegree(&n);
     phi phi(&n);
     velocity1 velocity1(&n);
     while(ros::ok()){
@@ -112,11 +154,11 @@ int main(int argc,char **argv)
       b.data=gamma.g2*PI/180.0;
       c.data=phi.phi1*PI/180.0;
       d.data=phi.phi2*PI/180.0;
-      e.data=(0.275*(3-distance.l1)+velocity1.v1*cos(c.data))/cos(a.data);
-      f.data=(0.275*(3-distance.l2)+velocity1.v1*cos(d.data))/cos(b.data);
-      velocity2.angular.z=(cos(a.data)/0.4)*(1.455*distance.l1*(1.5-c.data)-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
+      e.data=(piddistance.l1+velocity1.v1*cos(c.data))/cos(a.data);
+      f.data=(piddistance.l2+velocity1.v1*cos(d.data))/cos(b.data);
+      velocity2.angular.z=(cos(a.data)/0.4)*(distance.l1*piddegree.w1-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));
       velocity2.linear.x=e.data-0.4*velocity2.angular.z*tan(a.data);
-      velocity3.angular.z=(cos(b.data)/0.4)*(1.455*distance.l2*(4.7-d.data)-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
+      velocity3.angular.z=(cos(b.data)/0.4)*(distance.l2*piddegree.w2-velocity1.v1*sin(d.data)+distance.l2*velocity1.w1+f.data*sin(b.data));
       velocity3.linear.x=f.data-0.4*velocity3.angular.z*tan(b.data);
       
       pub.publish(velocity2);
