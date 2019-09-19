@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <node name="phi" pkg="mir_navigation" type="phi" />
-  <node name="radians2degree" pkg="mir_navigation" type="radians2degree" />
+  <node name="quaternionen2degree" pkg="mir_navigation" type="quaternionen2degree" />
   <node name="distance" pkg="mir_navigation" type="distance" />
   <node name="gamma" pkg="mir_navigation" type="gamma" />
   <node name="velocity" pkg="mir_navigation" type="velocity" />
