@@ -146,10 +146,10 @@ int main(int argc,char **argv)
       std_msgs::Float64 phi1;
       std_msgs::Float64 phi2;
       
-      newpose1.linear.x=0.4*cos(angle2.z2)+pose2.x2;
-      newpose1.linear.y=0.4*cos(angle2.z2)+pose2.y2;
-      newpose2.linear.x=0.4*cos(angle3.z3)+pose3.x3;
-      newpose2.linear.y=0.4*cos(angle3.z3)+pose3.y3;
+      newpose1.linear.x=0.45*cos(angle2.z2)+pose2.x2;
+      newpose1.linear.y=0.45*cos(angle2.z2)+pose2.y2;
+      newpose2.linear.x=0.45*cos(angle3.z3)+pose3.x3;
+      newpose2.linear.y=0.45*cos(angle3.z3)+pose3.y3;
       a.data=atan2((pose1.y1-newpose1.linear.y),(newpose1.linear.x-pose1.x1));
       d.data=atan2((pose1.y1-newpose2.linear.y),(newpose2.linear.x-pose1.x1));
       b.data=a.data*(180/PI);

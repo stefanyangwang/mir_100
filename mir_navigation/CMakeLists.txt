@@ -19,9 +19,9 @@ catkin_package(
     CATKIN_DEPENDS roscpp std_msgs nav_msgs geometry_msgs
     DEPENDS
 )
-add_executable(radians2degree nodes/radians2degree.cpp)
-target_link_libraries(radians2degree ${catkin_LIBRARIES})
-add_dependencies(radians2degree ${catkin_EXPORTED_TARGETS})
+add_executable(quaternionen2degree nodes/quaternionen2degree.cpp)
+target_link_libraries(quaternionen2degree ${catkin_LIBRARIES})
+add_dependencies(quaternionen2degree ${catkin_EXPORTED_TARGETS})
 add_executable(phi nodes/phi.cpp)
 target_link_libraries(phi ${catkin_LIBRARIES})
 add_dependencies(phi ${catkin_EXPORTED_TARGETS})
@@ -58,7 +58,7 @@ install(PROGRAMS
 )
 
 ## Mark executables and/or libraries for installation
- install(TARGETS radians2degree phi distance gamma velocity statepublish pidpublish
+ install(TARGETS quaternionen2degree phi distance gamma velocity statepublish pidpublish
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
