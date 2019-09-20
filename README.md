@@ -20,3 +20,4 @@ Roboterpid is used for pid control in the programm to make sure that the relativ
 
 
 In roboterpid we can change the PID parameter as we want,in this case I use the PD controller. Also for the node(setpoint_node) in pid package we can change the relativ formation of the robots to each other.Parameter setpointl1,setpointl2 are distance of the slave robots to the master. Setpointw1,setpointw2 are the relativ degree which written in radian in absolute coordinate. 
+The first control panel is for robot 1. Give a velocity for robot 1 so that the slaves can follow the master and the formation can produce. It's still unstable when the velocity of the robot 1 is zero and also when the augular velocity of robot 1 is too high. For the precision of the motion the angular velocity of robot 1 can not higher than 0.1 rad/s.
