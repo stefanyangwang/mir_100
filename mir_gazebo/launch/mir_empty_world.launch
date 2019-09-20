@@ -27,7 +27,7 @@
     
    
    
-  <group ns="robot1">
+  <group ns="robot1"> <!--master robot-->
   <!-- Add passive + mimic joints to joint_states topic-->
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     
@@ -43,7 +43,7 @@
     
    </include>
   </group>
-  <group ns="robot2">
+  <group ns="robot2"> <!--slave robot-->
   <!-- Add passive + mimic joints to joint_states topic-->
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     
@@ -59,7 +59,7 @@
     
    </include>
   </group>
-  <group ns="robot3">
+  <group ns="robot3"> <!--slave robot-->
   <!-- Add passive + mimic joints to joint_states topic-->
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     
