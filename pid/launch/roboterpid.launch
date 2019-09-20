@@ -5,7 +5,7 @@
       <param name="Kd" value="0.02" />
       
       
-     </node>
+     </node><!--PID-controller for the distance between robot 1 and robot 2-->
 
     
     
@@ -14,25 +14,25 @@
       <param name="Ki" value="0" />
       <param name="Kd" value="0.02" />
       
-     </node>
+     </node><!--PID-controller for the distance between robot 1 and robot 3-->
     <node name="controller" pkg="pid" type="controller" ns="w1" output="screen" >
       <param name="Kp" value="0.198" />
       <param name="Ki" value="0" />
       <param name="Kd" value="0.02" />
       
-    </node>
+    </node><!--PID-controller for the relative angle between robot 1 and robot 2-->
     <node name="controller" pkg="pid" type="controller" ns="w2" output="screen" >
       <param name="Kp" value="0.198" />
       <param name="Ki" value="0" />
       <param name="Kd" value="0.02" />
       
-    </node>
+    </node><!--PID-controller for the relative angle between robot 1 and robot 3-->
 
     
 
     <node name="setpoint_node" pkg="pid" type="setpoint_node"  output="screen" >
       
-    </node>
+    </node><!--In this node can define formtion, the goal value for the formation-->
     
 
 </launch>

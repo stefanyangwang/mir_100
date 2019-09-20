@@ -63,14 +63,14 @@ int main(int argc, char** argv)
   while (ros::ok())
   {
     
-    std_msgs::Float64 setpointl1;
-    std_msgs::Float64 setpointl2;
-    std_msgs::Float64 setpointw1;
-    std_msgs::Float64 setpointw2;
-    setpointl1.data=3;
+    std_msgs::Float64 setpointl1;// the goal distance between robot 1 and robot 2
+    std_msgs::Float64 setpointl2;// the goal distance between robot 1 and robot 3
+    std_msgs::Float64 setpointw1;// the goal relative angle between robot 1 and robot 2
+    std_msgs::Float64 setpointw2;// the goal relative angle between robot 1 and robot 3
+    setpointl1.data=3;// written in meter
     setpointl2.data=3;
-    setpointw1.data=1.5;
-    setpointw2.data=4.7;
+    setpointw1.data=1.57;// written in radiance
+    setpointw2.data=4.75;
     setpoint_pub.publish(setpointl1);  
     setpoint_pub1.publish(setpointl2);
     setpoint_pub2.publish(setpointw1);
