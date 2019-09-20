@@ -6,12 +6,12 @@ ros::Publisher pub;
 ros::Publisher pub1;
 const double PI=3.1415926;
 
-class ga {
+class ga { //parameter gamma
   
     
   public:
-    double g1;
-    double g2;
+    double g1;// gamma 1 for robot 2
+    double g2;// gamma 2 for robot 3
     ga(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("gamma",1000,&ga::poseCallback,this);
@@ -26,12 +26,12 @@ class ga {
     }
     ros::Subscriber pose_subscriber;
 };
-class piddistance {
+class piddistance {// the result of the PID-controller for the distance between robots
   
     
   public:
-    double l1;
-    double l2;
+    double l1;// the result of the PID-controller for the variable of distance between robot 1 and robot 2
+    double l2;// the result of the PID-controller for the variable of distance between robot 1 and robot 3
     piddistance(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("piddistance",1000,&piddistance::poseCallback,this);
@@ -46,12 +46,12 @@ class piddistance {
     }
     ros::Subscriber pose_subscriber;
 };
-class piddegree {
+class piddegree {// the result of the PID-controller for the relative angle between robots
   
     
   public:
-    double w1;
-    double w2;
+    double w1;// the result of the PID-controller for the variable of relative angle between robot 1 and robot 2
+    double w2;// the result of the PID-controller for the variable of relative angle between robot 1 and robot 3
     piddegree(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("piddegree",1000,&piddegree::poseCallback,this);
@@ -70,8 +70,8 @@ class distance {
   
     
   public:
-    double l1;
-    double l2;
+    double l1;//distance between robot 1 and robot 2
+    double l2;//distance between robot 1 and robot 3
     distance(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("distance",1000,&distance::poseCallback,this);
@@ -90,8 +90,8 @@ class phi {
   
     
   public:
-    double phi1;
-    double phi2;
+    double phi1;//relative angle between robot 1 and robot 2 in degree
+    double phi2;//relative angle between robot 1 and robot 3 in degree
     phi(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("phi",1000,&phi::poseCallback,this);
@@ -110,8 +110,8 @@ class velocity1 {
   
     
   public:
-    double v1;
-    double w1;
+    double v1;//linear velocity of robot 1
+    double w1;//angular velocity of robot 1
     velocity1(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("/robot1/cmd_vel",1000,&velocity1::poseCallback,this);
@@ -148,12 +148,12 @@ int main(int argc,char **argv)
       std_msgs::Float64 d;
       std_msgs::Float64 e;
       std_msgs::Float64 f;
-      geometry_msgs::Twist velocity2;
-      geometry_msgs::Twist velocity3;
+      geometry_msgs::Twist velocity2;// liear and angular velocity for robot 2
+      geometry_msgs::Twist velocity3;// liear and angular velocity for robot 3
       a.data=gamma.g1*PI/180.0;
       b.data=gamma.g2*PI/180.0;
-      c.data=phi.phi1*PI/180.0;
-      d.data=phi.phi2*PI/180.0;
+      c.data=phi.phi1*PI/180.0;// realtive angle between robot 1 and robot 2 in radiance
+      d.data=phi.phi2*PI/180.0;// realtive angle between robot 1 and robot 3 in radiance
       e.data=(piddistance.l1+velocity1.v1*cos(c.data))/cos(a.data);
       f.data=(piddistance.l2+velocity1.v1*cos(d.data))/cos(b.data);
       velocity2.angular.z=(cos(a.data)/0.45)*(distance.l1*piddegree.w1-velocity1.v1*sin(c.data)+distance.l1*velocity1.w1+e.data*sin(a.data));

@@ -3,7 +3,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Twist.h>
 ros::Publisher pub;
-class angle1 {
+class angle1 { // absolute direction of robot 1
   
     
   public:
@@ -21,7 +21,7 @@ class angle1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class angle2 {
+class angle2 { // absolute direction of robot 2
   
     
   public:
@@ -39,7 +39,7 @@ class angle2 {
     }
     ros::Subscriber pose_subscriber;
 };
-class angle3 {
+class angle3 { // absolute direction of robot 3
   
     
   public:
@@ -61,8 +61,8 @@ class phi {
   
     
   public:
-    double phi1;
-    double phi2;
+    double phi1; //relative direction between robot 1 and robot 2 in degree
+    double phi2; //relative direction between robot 1 and robot 3 in degree
     phi(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("phi",1000,&phi::poseCallback,this);
@@ -89,8 +89,8 @@ int main(int argc,char **argv)
     phi phi(&n);
     while(ros::ok()){
       geometry_msgs::Twist gamma;
-      gamma.linear.x=angle1.z1+phi.phi1-angle2.z2;
-      gamma.linear.y=angle1.z1+phi.phi2-angle3.z3;
+      gamma.linear.x=angle1.z1+phi.phi1-angle2.z2; //parameter gamma 1 for controlling of robot 2
+      gamma.linear.y=angle1.z1+phi.phi2-angle3.z3; //parameter gamma 2 for controlling of robot 3
       pub.publish(gamma);
       
       ros::spinOnce();

@@ -3,7 +3,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Twist.h>
 ros::Publisher pub;
-class pose1 {
+class pose1 { //the absolute position of the robot 1
   
     
   public:
@@ -22,13 +22,13 @@ class pose1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class newpose {
+class newpose { //position of points which in front of the middle point in the drive direction of robot 2 and 3
   
     
   public:
-    double x2;
+    double x2; //position of the point which in front of the middle point in the drive direction of robot 2
     double y2;
-    double x3;
+    double x3; //position of the point which in front of the middle point in the drive direction of robot 3
     double y3;
     newpose(ros::NodeHandle *n){
      
@@ -55,8 +55,8 @@ int main(int argc,char **argv)
     newpose newpose(&n);
     while(ros::ok()){
       geometry_msgs::Twist l;
-      l.linear.x=sqrt(pow(newpose.x2-pose1.x1,2)+pow(newpose.y2-pose1.y1,2));
-      l.linear.y=sqrt(pow(newpose.x3-pose1.x1,2)+pow(newpose.y3-pose1.y1,2));
+      l.linear.x=sqrt(pow(newpose.x2-pose1.x1,2)+pow(newpose.y2-pose1.y1,2)); //distance between robot 1 and robot 2
+      l.linear.y=sqrt(pow(newpose.x3-pose1.x1,2)+pow(newpose.y3-pose1.y1,2)); //distance between robot 1 and robot 3
       pub.publish(l);
       
       ros::spinOnce();

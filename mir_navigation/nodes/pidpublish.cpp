@@ -2,7 +2,7 @@
 #include <std_msgs/Float64.h>
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Twist.h>
-class controleffortl1 {
+class controleffortl1 {// the result of the PID-controller for the variable of distance between robot 1 and robot 2
   
     
   public:
@@ -21,7 +21,7 @@ class controleffortl1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class controleffortl2 {
+class controleffortl2 {// the result of the PID-controller for the variable of distance between robot 1 and robot 3
   
     
   public:
@@ -40,7 +40,7 @@ class controleffortl2 {
     }
     ros::Subscriber pose_subscriber;
 };
-class controleffortw1 {
+class controleffortw1 {// the result of the PID-controller for the variable of relative direction between robot 1 and robot 2
   
     
   public:
@@ -59,7 +59,7 @@ class controleffortw1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class controleffortw2 {
+class controleffortw2 {// the result of the PID-controller for the variable of relative direction between robot 1 and robot 3
   
     
   public:
@@ -83,8 +83,8 @@ int main(int argc,char **argv)
 {
     ros::init(argc,argv,"pidpublish");
     ros::NodeHandle n;
-    ros::Publisher pub=n.advertise<geometry_msgs::Twist>("piddistance",10);
-    ros::Publisher pub1=n.advertise<geometry_msgs::Twist>("piddegree",10);
+    ros::Publisher pub=n.advertise<geometry_msgs::Twist>("piddistance",10);// the result of the PID-controller for the distance between robots
+    ros::Publisher pub1=n.advertise<geometry_msgs::Twist>("piddegree",10);// the result of the PID-controller for the relative angle between robots
     
     ros::Rate rate(50);
    

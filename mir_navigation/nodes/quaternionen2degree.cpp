@@ -12,7 +12,7 @@ const double PI=3.1415926;
 
 
 void poseCallback(const nav_msgs::Odometry & pose_message){
-    std_msgs::Float64 a;
+    std_msgs::Float64 a; //the absolute direction angle of the robot 1
     
     double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
     double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);
@@ -31,7 +31,7 @@ void poseCallback(const nav_msgs::Odometry & pose_message){
 void poseCallback1(const nav_msgs::Odometry & pose_message){
     
     
-   std_msgs::Float64 a;
+   std_msgs::Float64 a; //the absolute direction angle of the robot 2
     
     double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
     double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);
@@ -50,7 +50,7 @@ void poseCallback1(const nav_msgs::Odometry & pose_message){
 void poseCallback2(const nav_msgs::Odometry & pose_message){
     
     
-    std_msgs::Float64 a;
+    std_msgs::Float64 a; //the absolute direction angle of the robot 3
     
     double siny_cosp=2.0*(pose_message.pose.pose.orientation.w*pose_message.pose.pose.orientation.z+pose_message.pose.pose.orientation.x*pose_message.pose.pose.orientation.y);
     double cosy_cosp=1.0-2.0*(pose_message.pose.pose.orientation.y*pose_message.pose.pose.orientation.y+pose_message.pose.pose.orientation.z*pose_message.pose.pose.orientation.z);

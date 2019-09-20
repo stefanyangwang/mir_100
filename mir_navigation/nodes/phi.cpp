@@ -5,12 +5,12 @@
 ros::Publisher pub;
 ros::Publisher pub1;
 const double PI=3.1415926;
-class pose1 {
+class pose1 { //the absolute position of the robot 1
   
     
   public:
-    double x1;
-    double y1;
+    double x1; //absolute x position of the robot 1
+    double y1; //absolute y position of the robot 1
     pose1(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("/robot1/base_pose_ground_truth",1000,&pose1::poseCallback,this);
@@ -24,12 +24,12 @@ class pose1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class pose2 {
+class pose2 { //the absolute position of the robot 2
   
     
   public:
-    double x2;
-    double y2;
+    double x2; //absolute x position of the robot 2
+    double y2; //absolute y position of the robot 2
     pose2(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("/robot2/base_pose_ground_truth",1000,&pose2::poseCallback,this);
@@ -43,12 +43,12 @@ class pose2 {
     }
     ros::Subscriber pose_subscriber;
 };
-class pose3 {
+class pose3 { //the absolute position of the robot 3
   
     
   public:
-    double x3;
-    double y3;
+    double x3; //absolute x position of the robot 3
+    double y3; //absolute y position of the robot 3
     pose3(ros::NodeHandle *n){
      
       pose_subscriber=n->subscribe("/robot3/base_pose_ground_truth",1000,&pose3::poseCallback,this);
@@ -62,7 +62,7 @@ class pose3 {
     }
     ros::Subscriber pose_subscriber;
 };
-class angle1 {
+class angle1 { // absolute direction of robot 1
   
     
   public:
@@ -80,7 +80,7 @@ class angle1 {
     }
     ros::Subscriber pose_subscriber;
 };
-class angle2 {
+class angle2 { // absolute direction of robot 2
   
     
   public:
@@ -98,7 +98,7 @@ class angle2 {
     }
     ros::Subscriber pose_subscriber;
 };
-class angle3 {
+class angle3 { // absolute direction of robot 3
   
     
   public:
@@ -135,18 +135,18 @@ int main(int argc,char **argv)
     angle3 angle3(&n);
     ros::Rate rate(50);
     while(ros::ok()){
-      geometry_msgs::Twist newpose1;
-      geometry_msgs::Twist newpose2;
+      geometry_msgs::Twist newpose1; //position of the point which in front of the middle point in the drive direction of robot 2
+      geometry_msgs::Twist newpose2; //position of the point which in front of the middle point in the drive direction of robot 3
       std_msgs::Float64 a;
       std_msgs::Float64 b;
       std_msgs::Float64 c;
       std_msgs::Float64 d;
       std_msgs::Float64 e;
       std_msgs::Float64 f;
-      std_msgs::Float64 phi1;
-      std_msgs::Float64 phi2;
+      std_msgs::Float64 phi1; //relative direction between robot 1 and robot 2 in degree
+      std_msgs::Float64 phi2; //relative direction between robot 1 and robot 3 in degree
       
-      newpose1.linear.x=0.45*cos(angle2.z2)+pose2.x2;
+      newpose1.linear.x=0.45*cos(angle2.z2)+pose2.x2; //0.45 is the distance between the middle point and the front bumper of the robot
       newpose1.linear.y=0.45*cos(angle2.z2)+pose2.y2;
       newpose2.linear.x=0.45*cos(angle3.z3)+pose3.x3;
       newpose2.linear.y=0.45*cos(angle3.z3)+pose3.y3;
