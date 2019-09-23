@@ -1,8 +1,8 @@
 <launch>
     <node name="controller" pkg="pid" type="controller" ns="l1" output="screen" >
-      <param name="Kp" value="0.198" />
+      <param name="Kp" value="0.4" />
       <param name="Ki" value="0" />
-      <param name="Kd" value="0.02" />
+      <param name="Kd" value="0" />
       
       
      </node><!--PID-controller for the distance between robot 1 and robot 2-->
@@ -10,21 +10,21 @@
     
     
     <node name="controller" pkg="pid" type="controller" ns="l2" output="screen" >
-      <param name="Kp" value="0.198" />
+      <param name="Kp" value="0.4" />
       <param name="Ki" value="0" />
-      <param name="Kd" value="0.02" />
+      <param name="Kd" value="0" />
       
      </node><!--PID-controller for the distance between robot 1 and robot 3-->
     <node name="controller" pkg="pid" type="controller" ns="w1" output="screen" >
-      <param name="Kp" value="0.198" />
+      <param name="Kp" value="0.4" />
       <param name="Ki" value="0" />
-      <param name="Kd" value="0.02" />
+      <param name="Kd" value="0" />
       
     </node><!--PID-controller for the relative angle between robot 1 and robot 2-->
     <node name="controller" pkg="pid" type="controller" ns="w2" output="screen" >
-      <param name="Kp" value="0.198" />
+      <param name="Kp" value="0.4" />
       <param name="Ki" value="0" />
-      <param name="Kd" value="0.02" />
+      <param name="Kd" value="0" />
       
     </node><!--PID-controller for the relative angle between robot 1 and robot 3-->
 
